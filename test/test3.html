@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+    <div ng-app="app">
+        <div ng-controller="MainController"></div>
+    </div>
+    <script src="../../angular.js"></script>
+    <script src="../jsonp_service.js"></script>
+    <script src="../model_service.js"></script>
+    <script>
+    var app = angular.module('app', ['mlist.services','mlist.model']);
+    app.controller('MainController', function ($scope, $http, mlModel) {
+        var start = 0;
+        var count = 10;
+        mlModel.getTop250(0,10,function(data){
+            console.log(data);
+        })
+        mlModel.getComingSoon(0,10,function(data){
+            console.log(data);
+        })
+        mlModel.getInTheaters(0,10,function(data){
+            console.log(data);
+        })
+        mlModel.getSubject('1292052',function(data){
+            console.log(data);
+        })
+    })
+</script>
+</body>
+
+</html>

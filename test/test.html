@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div ng-app="app">
+    <div ng-controller="MainController"></div>
+</div>
+<script src="../../angular.js"></script>
+<script>
+    var app = angular.module('app', []);
+    app.controller('MainController', function ($scope, $http) {
+        var start = 0;
+        var count = 10;
+        $http
+                .jsonp(`http://api.douban.com/v2/movie/top250?start=${start}&count=${count}&callback=JSON_CALLBACK`)
+                .success(function (data) {
+                    console.log(data);
+                })
+                .error(function (error) {
+                    console.log(error);
+                })
+    })
+</script>
+</body>
+</html>

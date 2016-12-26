@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div ng-app="app">
+    <div ng-controller="MainController"></div>
+</div>
+<script src="../../angular.js"></script>
+<script src="../jsonp_service.js"></script>
+<script>
+    var app = angular.module('app', ['mlist.services']);
+    app.controller('MainController', function ($scope, $http, mlJsonp) {
+        var start = 0;
+        var count = 10;
+
+        var url = `http://api.douban.com/v2/movie/top250?start=${start}&count=${count}&callback=JSON_CALLBACK`
+
+        mlJsonp(url, function (data) {
+            console.log(data);
+        })
+    })
+</script>
+</body>
+</html>
